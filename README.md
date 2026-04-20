@@ -1,1 +1,1 @@
-# AHST_Class
+# Hedge Trading Academy
