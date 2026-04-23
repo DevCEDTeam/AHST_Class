@@ -19,14 +19,24 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Tuple
 
 import pandas as pd
 import requests
+
+# Load .env from the directory containing this file
+_env_path = Path(__file__).parent / '.env'
+if _env_path.exists():
+    for _line in _env_path.read_text().splitlines():
+        _line = _line.strip()
+        if _line and not _line.startswith('#') and '=' in _line:
+            _k, _v = _line.split('=', 1)
+            os.environ.setdefault(_k.strip(), _v.strip())
 
 
 __all__ = [
@@ -41,7 +51,7 @@ __all__ = [
 class AlphaVantageConfig:
     """Configuration for the Alpha Vantage client."""
 
-    api_key: str = ''
+    api_key: str = field(default_factory=lambda: os.environ.get('ALPHA_VANTAGE_API_KEY', ''))
     base_url: str = 'https://www.alphavantage.co/query'
     output_size: str = 'full'
     request_timeout: int = 20

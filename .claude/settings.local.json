@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m py_compile \"AHST_Class/8C_GapFade_Analysis.py\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\('alpha_vantage_live.py'\\).read\\(\\)\\)\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\('AHST_Class/alpha_vantage_live.py'\\).read\\(\\)\\)\")"
+    ]
+  }
+}
